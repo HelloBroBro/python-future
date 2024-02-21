@@ -8,7 +8,7 @@ Who is this for?
 ongoing Python 2.7 support easily and with little maintenance burden.
 
 2. People who wish to ease and accelerate migration of their Python 2 codebases
-to Python 3.4+, module by module, without giving up Python 2 compatibility.
+to Python 3.3+, module by module, without giving up Python 2 compatibility.
 
 
 Why upgrade to Python 3?
@@ -92,7 +92,7 @@ What inspired this project?
 ---------------------------
 
 In our Python training courses, we at `Python Charmers
-<http://pythoncharmers.com>`_ faced a dilemma: teach people Python 3, which was
+<https://pythoncharmers.com>`_ faced a dilemma: teach people Python 3, which was
 future-proof but not as useful to them today because of weaker 3rd-party
 package support, or teach people Python 2, which was more useful today but
 would require them to change their code and unlearn various habits soon. We
@@ -118,10 +118,7 @@ Maturity
 How well has it been tested?
 ----------------------------
 
-``future`` is used by several major projects, including `mezzanine
-<http://mezzanine.jupo.org>`_ and `ObsPy <http://www.obspy.org>`_. It is also
-currently being used to help with porting 800,000 lines of Python 2 code in
-`Sage <http://sagemath.org>`_ to Python 2/3.
+``future`` is used by thousands of projects and has been downloaded over 1.7 billion times. Some projects like Sage have used it to port 800,000+ lines of Python 2 code to Python 2/3.
 
 Currently ``python-future`` has over 1000 unit tests. Many of these are straight
 from the Python 3.3 and 3.4 test suites.
@@ -135,10 +132,8 @@ expanded.
 Is the API stable?
 ------------------
 
-Not yet; ``future`` is still in beta. Where possible, we will try not to break
-anything which was documented and used to work.  After version 1.0 is released,
-the API will not change in backward-incompatible ways until a hypothetical
-version 2.0.
+Yes; ``future`` is mature. We'll make very few changes from here, trying not to
+break anything which was documented and used to work.
 
 ..
     Are there any example of Python 2 packages ported to Python 3 using ``future`` and ``futurize``?
@@ -257,13 +252,14 @@ Platform and version support
 Which versions of Python does ``python-future`` support?
 --------------------------------------------------------
 
-Python 2.7, and 3.4+ only.
+Python 2.6 and 3.3+ only. Python 2.7 and Python 3.4+ are preferred.
 
-Python 2.7 introduced many important forward-compatibility
-features (such as import hooks, ``b'...'`` literals and ``__future__``
-definitions) that greatly reduce the maintenance burden for single-source
-Py2/3 compatible code. ``future`` leverages these features and aims to
-close the remaining gap between Python 3 and 2.7.
+You may be able to use Python 2.6 but writing Py2/3 compatible code is not as
+easy. Python 2.7 introduced many important forward-compatibility features (such
+as import hooks, ``b'...'`` literals and ``__future__`` definitions) that
+greatly reduce the maintenance burden for single-source Py2/3 compatible code.
+``future`` leverages these features and aims to close the remaining gap between
+Python 3 and 2.7.
 
 
 Do you support Pypy?
@@ -287,8 +283,7 @@ Support
 Is there a mailing list?
 ------------------------
 
-Yes, please ask any questions on the `python-porting
-<https://mail.python.org/mailman/listinfo/python-porting>`_ mailing list.
+There was a `python-porting` mailing list, but it's now dead.
 
 
 .. _contributing:
@@ -300,8 +295,10 @@ Can I help?
 -----------
 
 Yes please :) We welcome bug reports, additional tests, pull requests,
-and stories of either success or failure with using it. Help with the fixers
-for the ``futurize`` script is particularly welcome.
+and stories of either success or failure with using it.
+
+However, please note that the project is not very actively maintained. It
+should be considered done, like Python 2.
 
 
 Where is the repo?

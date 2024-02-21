@@ -9,7 +9,6 @@ from future.tests.base import unittest, CodeHandler, expectedFailurePY2
 
 import sys
 import tempfile
-import os
 import copy
 import textwrap
 from subprocess import CalledProcessError
@@ -303,6 +302,15 @@ class TestStandardLibraryReorganization(CodeHandler):
         for method in ['tell', 'read', 'seek', 'close', 'flush', 'getvalue']:
             self.assertTrue(hasattr(s, method))
 
+    def test_SimpleQueue(self):
+        from multiprocessing import SimpleQueue
+        sq = SimpleQueue()
+        self.assertTrue(sq.empty())
+        sq.put('thing')
+        self.assertFalse(sq.empty())
+        self.assertEqual(sq.get(), 'thing')
+        self.assertTrue(sq.empty())
+
     def test_queue(self):
         import queue
         q = queue.Queue()
@@ -422,7 +430,8 @@ class TestStandardLibraryReorganization(CodeHandler):
 
     def test_underscore_prefixed_modules(self):
         import _thread
-        import _dummy_thread
+        if sys.version_info < (3, 9):
+            import _dummy_thread
         import _markupbase
         self.assertTrue(True)
 
@@ -447,8 +456,12 @@ class TestStandardLibraryReorganization(CodeHandler):
         """
         reload has been moved to the imp module
         """
-        import imp
-        imp.reload(imp)
+        # imp was deprecated in python 3.6
+        if sys.version_info >= (3, 6):
+            import importlib as imp
+        else:
+            import imp
+        imp.reload(sys)
         self.assertTrue(True)
 
     def test_install_aliases(self):
@@ -591,7 +604,7 @@ class TestFutureMoves(CodeHandler):
         from future.moves.dbm import ndbm
 
 
-# Running the following tkinter test causes the following bizzare test failure:
+# Running the following tkinter test causes the following bizarre test failure:
 #
 # ======================================================================
 # FAIL: test_open_default_encoding (future.tests.test_builtins.BuiltinTest)
